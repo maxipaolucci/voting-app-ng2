@@ -1,2 +1,4 @@
-1) install globally webpack and webpack-dev-server
->npm install -g webpack webpack-dev-server
+1) checkear como usar supertest en el projecto de nodejs, fijarse si mete algun test
+script en package.json
+
+2) los mismo con chai
