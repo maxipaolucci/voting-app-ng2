@@ -4,7 +4,7 @@
   "description": "startupJS Client",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Maxi Paolucci",

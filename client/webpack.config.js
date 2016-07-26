@@ -8,8 +8,12 @@ module.exports = {
     'webpack-dev-server/client?http://localhost:8080'
   ],
   output: {
-    publicPath: '/',
+    path: __dirname + '/dist/js',
+    publicPath: '/js/',
     filename: 'main.js'
+  },
+  devServer: {
+    contentBase: './dist'
   },
   devtool: 'source-map',
   module: {
