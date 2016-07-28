@@ -19,6 +19,7 @@
     "del": "^2.2.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
     "run-sequence": "^1.2.2",

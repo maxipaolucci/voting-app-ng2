@@ -1,11 +1,12 @@
 StartupJS is "the boilerplate" to start developing a web applications without loose time doing
 server and client configuration.
 
-The server provides an ExpressJS app that comes allows REST webservices and websocket
-communication. Has npm as package manager.
+The server is an ExpressJS app that allows REST webservices and websocket communication.
 
-The client provides webpack to bundle resources and serve the static files, SASS to manage
-stylesheets and npm as package manager.
+The client icludes by default:
+* Gulp for building tasks.
+* Webpack to bundle resources and serve the webapp.
+* SASS to manage stylesheets.
 
 
 FOLLOW THESE STEPS TO SETUP
@@ -28,8 +29,8 @@ FOLLOW THESE STEPS TO SETUP
 4) CLIENT SETUP
 ---------------
 
-4.1) Install webpack-dev-server npm package globally to have access to it in the command line:
->npm install -g webpack-dev-server
+4.1) Install webpack-dev-server and gulp npm packages globally to have access to these
+from the command line: >npm install -g webpack-dev-server gulp
 
 4.1) Go to client directory and run >npm install
 
