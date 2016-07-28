@@ -17,7 +17,7 @@ server.listen(port, () => {
 //WebSocket onConnection handler
 io.on('connection', (socket) => {
   console.log('Client connected!');
-  socket.emit('hello', 'this is the statupJS server!');
+  socket.emit('hello', 'StatupJS server is running!.');
 });
 
 //MIDLEWARES

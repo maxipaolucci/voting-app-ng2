@@ -1,7 +1,14 @@
 body {
+  background-color: #ffc520;
+  font-family: Arial;
+  text-align: center;
+
   h1 {
-    color: blue;
+    color: #bf616a;
   }
 
-  background-color: green;
+  .server-msg, .server-off {
+    text-align: right;
+    margin: 50px;
+  }
 }
