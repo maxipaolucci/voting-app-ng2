@@ -44,3 +44,5 @@ from the command line: `>npm install -g webpack-dev-server gulp`
 4.4) Navigate to [http://localhost:8080]
 
 5) (Optional - Just for testing). Run the tests scripts doing: `>gulp test`  OR  `>gulp test:watch`
+
+[http://localhost:8080] : http://localhost:8080
