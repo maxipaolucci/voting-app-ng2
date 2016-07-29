@@ -41,8 +41,6 @@ from the command line: `>npm install -g webpack-dev-server gulp`
 
     If you are not doing development and just want to use the client webapp then run: `>gulp start`
 
-4.4) Navigate to [http://localhost:8080]
+4.4) Navigate to `http://localhost:8080`
 
 5) (Optional - Just for testing). Run the tests scripts doing: `>gulp test`  OR  `>gulp test:watch`
-
-[http://localhost:8080] : http://localhost:8080
