@@ -1,5 +1,5 @@
 #StartupJS
-sssssssssss
+
 Another boilerplate to start developing web applications without loose time doing server and client configuration. Go directly to the core and avoid the boring stuff.
 
 ###The server is:
