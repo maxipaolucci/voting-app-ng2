@@ -1,4 +1,4 @@
-#StartupJS
+#StartupJS with Angular
 
 Another boilerplate to start developing web applications without loose time doing server and client configuration. Go directly to the core and avoid the boring stuff.
 
@@ -8,6 +8,7 @@ Another boilerplate to start developing web applications without loose time doin
 * Mocha, chai and supertest for testing. (Supertest to test webservices).
 
 ###The client includes by default:
+* Angular 2
 * Gulp for building tasks.
 * Webpack to bundle resources and serve the webapp.
 * SASS to manage stylesheets.
