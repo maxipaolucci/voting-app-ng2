@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "startupJS Server",
+  "description": "startupJSwithAngular Server",
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",

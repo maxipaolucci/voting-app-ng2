@@ -16,7 +16,7 @@ Another boilerplate to start developing web applications without loose time doin
 
 ##Setup
 
-1) run `>git clone http://github.com/maxipaolucci/startupJS.git`
+1) run `>git clone http://github.com/maxipaolucci/startupJSwithAngular.git`
 
 2) Install node and npm in your pc (to check if you already have it installed do `>npm --version`  and  `>node --version`)
 
