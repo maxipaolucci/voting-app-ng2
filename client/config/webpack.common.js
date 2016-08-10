@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 var helpers = require('./helpers');
 
@@ -46,6 +47,12 @@ module.exports = {
       }
     ]
   },
+
+  postcss: [
+    autoprefixer({
+      browsers: ['last 2 versions']
+    })
+  ],
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({

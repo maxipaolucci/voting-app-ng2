@@ -4,6 +4,10 @@ var commonConfig = require('./webpack.common.js');
 var helpers = require('./helpers');
 
 module.exports = webpackMerge(commonConfig, {
+  entry: {
+    'server': 'webpack-dev-server/client?http://localhost:8000' //this adds autorefresh
+  },
+
   devtool: 'cheap-module-eval-source-map',
 
   output: {
