@@ -4,7 +4,7 @@ import '../../public/css/styles.css';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', './main.scss']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   name = "Maxi";
