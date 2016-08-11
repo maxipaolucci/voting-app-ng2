@@ -4,3 +4,4 @@
 *.log
 client/dist
 client/typings
+client/public/css/*.css
