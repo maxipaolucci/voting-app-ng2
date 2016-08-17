@@ -12,9 +12,16 @@ var PUBLIC_CSS_PATH = './public/css';
 
 //TASKS
 /**
- * Default task when running just gulp
+ * Default task when running just gulp. Here is just a shortcut for >gulp dev
  */
-gulp.task('default', []);
+gulp.task('default', ['dev']);
+
+/**
+ * Start the client server to use the app. First thing it does is compile SASS files outside src/app directory.
+ */
+gulp.task('start', function(callback) {
+  runSequence('sass', 'npm:start', callback);
+});
 
 /**
  * Start the Development environment. Makes the build, starts watchers and start the server to make some development tasks
@@ -48,13 +55,13 @@ gulp.task('watch', function() {
  * generates a new build (dist directory)
  */
 gulp.task('build', function(callback) {
-  runSequence('clean-build', 'sass', 'exec-build', callback);
+  runSequence('clean-build', 'sass', 'npm:build', callback);
 });
 
 /**
- * Executes the build command
+ * Executes the npm build command
  */
-gulp.task('exec-build', shell.task(['npm run build']));
+gulp.task('npm:build', shell.task(['npm run build']));
 
 /**
  * Delete the current build directory
@@ -64,11 +71,11 @@ gulp.task('clean-build', function() {
 });
 
 /**
- * Starts the webpack-dev-server
+ * Executes the npm start command that starts the webpack-dev-server
  */
-gulp.task('start', shell.task(['npm start']));
+gulp.task('npm:start', shell.task(['npm start']));
 
 /**
- * run the mocha tests
+ * run the karma tests
  */
 gulp.task('test', shell.task(['npm run test']));

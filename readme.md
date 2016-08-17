@@ -37,11 +37,18 @@ from the command line: `>npm install -g webpack-dev-server gulp`
 4.1) Go to client directory and run `>npm install`
 
 4.3) Start the development environment doing: `>gulp dev`
-    This gulp task creates the build, starts watchers for html files (gulp task) and starts the webpack-dev-server
-    The webpack-dev-servers also has watchers for js and css files with realtime refresh.
+    This gulp task compile global SASS files in the src directory (outside src/app), starts GULP watchers and starts the webpack-dev-server
+    The webpack-dev-servers also has watchers for js and SASS files (inside src/app) with auto-refresh on browser.
 
     If you are not doing development and just want to use the client webapp then run: `>gulp start`
 
-4.4) Navigate to `http://localhost:8080`
+4.4) Navigate to `http://localhost:8000`
 
-5) (Optional - Just for testing). Run the tests scripts doing: `>gulp test`  OR  `>gulp test:watch`
+####More GULP commands
+1) Start the development environment: `>gulp` or `>gulp dev`
+
+2) Start the client app in non-developer mode: `>gulp start`
+
+3) Run the tests scripts doing: `>gulp test`
+
+4) Create a build under /dist directory doing: `>gulp build`
