@@ -4,7 +4,6 @@ var runSequence = require('run-sequence'); //for run task in order and not in pa
 var del = require('del'); //for remove files or directories
 var shell = require('gulp-shell');
 
-
 //CONSTANTS
 var SCSS_FILES = './src/*.scss';
 var BUILD_PATH = './dist';

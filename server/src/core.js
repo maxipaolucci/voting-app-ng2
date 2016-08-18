@@ -16,20 +16,29 @@ function getWinner(vote) {
   }
 }
 
+export const INITIAL_STATE = Map();
+
 export function setEntries(state, entries) {
   return state.set('entries', List(entries));
 }
 
 export function next(state) {
   const entries = state.get('entries').concat(getWinner(state.get('vote')));
-  return state.merge(Map({
-    entries: entries.skip(2),
-    vote: Map({
-      pair: entries.take(2)
-    })
-  }));
+
+  if (entries.count() == 1) {
+    return state.set('winner', entries.first())
+        .remove('entries')
+        .remove('vote');
+  } else {
+    return state.merge(Map({
+      entries: entries.skip(2),
+      vote: Map({
+        pair: entries.take(2)
+      })
+    }));
+  }
 }
 
 export function vote(state, entry) {
-  return state.updateIn(['vote', 'tally', entry], 0, tally => tally + 1);
+  return state.updateIn(['tally', entry], 0, tally => tally + 1);
 }
