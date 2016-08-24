@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
-import {IVoteState, voteReducer} from './reducers/vote';
+import * as votting from './reducers/vote';
 import { List } from 'immutable';
 
-export default combineReducers<IVoteState>({
-  vote: voteReducer
+export interface IAppState {
+  vottingModel? : votting.IVottingState;
+}
+
+export default combineReducers<IAppState>({
+  vottingModel: votting.voteReducer
 });
