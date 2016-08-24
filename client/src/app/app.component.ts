@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import * as io from 'socket.io-client';
 //import reduxLogger from 'redux-logger';
-import { NgRedux, select } from 'ng2-redux';
+import {NgRedux, select, DevToolsExtension} from 'ng2-redux';
 import { Observable } from 'rxjs';
 
-import {createStore} from 'redux';
+
 import rootReducer from '../model/store';
-import {INITIAL_STATE, IVottingState} from '../model/reducers/vote';
+import {IVottingState} from '../model/reducers/vote';
 import { IAppState } from '../model/store';
 import { List } from 'immutable';
 
 import '../../public/css/styles.css';
+import { __DEVMODE__ } from "../constants/config";
 
 @Component({
   selector: 'my-app',
@@ -23,8 +24,16 @@ export class AppComponent implements OnInit {
   store : any = null;
   @select((state : IAppState) => state.vottingModel) vottingState: Observable<IVottingState>;
 
-  constructor(private ngRedux: NgRedux<IAppState>) {
-    this.ngRedux.configureStore(rootReducer, {}, []);
+  constructor(private ngRedux: NgRedux<IAppState>, private devTools: DevToolsExtension) {
+
+    let enhancers : any[] = [];
+    // ... add whatever other enhancers you want.
+
+    // You probably only want to expose this tool in devMode.
+    if (process.env.ENV === __DEVMODE__ && devTools.isEnabled()) {
+      enhancers = [ ...enhancers, devTools.enhancer() ];
+    }
+    this.ngRedux.configureStore(rootReducer, {}, [], enhancers);
   }
 
   ngOnInit() {
