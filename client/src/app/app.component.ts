@@ -10,13 +10,16 @@ import reduxLogger from '../model/configureLogger';
 
 import { __DEVMODE__ } from "../constants/config";
 import {VottingActions} from "./vottingActions.service";
+import {VottingMiddleware} from "./vottingMiddleware.service";
 
 import '../../public/css/styles.css';
+
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [ VottingMiddleware ]
 })
 export class AppComponent implements OnInit {
   name = "Maxi";
@@ -26,10 +29,13 @@ export class AppComponent implements OnInit {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private devTools: DevToolsExtension,
-    private vottingActions: VottingActions) {
+    private vottingActions: VottingActions,
+    private vottingMiddleware: VottingMiddleware) {
+
+    this.socket = io(`${location.protocol}//${location.hostname}:3030`);
 
     let enhancers : any[] = [];
-    let middlewares : any[] = [];
+    let middlewares : any[] = [ vottingMiddleware.manageRemote(this.socket) ];
     // ... add whatever other enhancers you want.
 
     if (__DEVMODE__) {
@@ -44,8 +50,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
     //this.vottingState.subscribe(state => {console.log(state.get('vote'))});
-    this.socket = io(`${location.protocol}//${location.hostname}:3030`);
     this.socket.on('state', (state : any) => this.vottingActions.setState(state) );
   }
 }
