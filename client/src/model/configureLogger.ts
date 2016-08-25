@@ -3,7 +3,7 @@ import { __DEVMODE__ } from "../constants/config";
 
 
 const createLogger = require('redux-logger');
-const logger = createLogger({
+const reduxLogger = createLogger({
   level: 'info',
   collapsed: true,
   predicate: (getState : any, action : any) => __DEVMODE__ === true,
@@ -20,4 +20,4 @@ const logger = createLogger({
   }
 });
 
-export default logger;
+export default reduxLogger;

@@ -8,13 +8,15 @@ export interface IVottingState extends Map<string, any> {
   winner? : string
 }
 
-export const INITIAL_STATE : IVottingState = Map<string, any>({ vote : 'maxi'});
+export const VOTTING_INITIAL_STATE : IVottingState = Map<string, any>();
 
+//Privete methods
 const setState = (state : IVottingState, newState: any) => {
   return <IVottingState>state.merge(fromJS(newState));
 };
 
-export function voteReducer(state : IVottingState = INITIAL_STATE, action : IAction) : IVottingState  {
+//Public reducer
+export function voteReducer(state : IVottingState = VOTTING_INITIAL_STATE, action : IAction) : IVottingState  {
   switch (action.type) {
 
     case 'SET_STATE':

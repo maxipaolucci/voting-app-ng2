@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 
 import { IAppState } from '../model/store';
-import { setState } from '../model/actions/vote';
+import { setState } from '../model/actions/votting';
 
 @Injectable()
 export class VottingActions {
