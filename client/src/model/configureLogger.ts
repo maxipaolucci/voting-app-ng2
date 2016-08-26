@@ -1,7 +1,6 @@
 import * as Immutable from 'immutable';
 import { __DEVMODE__ } from "../constants/config";
 
-
 const createLogger = require('redux-logger');
 const reduxLogger = createLogger({
   level: 'info',
