@@ -4,11 +4,12 @@ import { NgRedux, DevToolsExtension } from 'ng2-redux';
 
 import { AppComponent } from './app.component';
 import {VottingActions} from "./vottingActions.service";
-import {VottingComponent} from "./components/hello/votting.component";
+import {VottingComponent} from "./components/votting/votting.component";
+import {VoteComponent} from "./components/vote/vote.component";
 
 @NgModule({
   imports: [ BrowserModule ],
-  declarations: [ AppComponent, VottingComponent ],
+  declarations: [ AppComponent, VottingComponent, VoteComponent ],
   bootstrap: [ AppComponent ],
   providers: [ NgRedux, DevToolsExtension, VottingActions ]
 })

@@ -6,27 +6,27 @@ import reducer from '../src/reducer';
 describe('reducer', () => {
 
   it('handles undefined initial state as an empty Map', () => {
-    const action = {type: 'SET_ENTRIES', entries: ['Trainspotting']};
+    const action = {type: 'SET_ITEMS', items: ['Trainspotting']};
     const nextState = reducer(undefined, action);
 
     expect(nextState).to.equal(fromJS({
-      entries: ['Trainspotting']
+      items: ['Trainspotting']
     }));
   });
 
-  it('handles SET_ENTRIES', () => {
+  it('handles SET_ITEMS', () => {
     const initialState = Map();
-    const action = {type: 'SET_ENTRIES', entries: ['Trainspotting']};
+    const action = {type: 'SET_ITEMS', items: ['Trainspotting']};
     const nextState = reducer(initialState, action);
 
     expect(nextState).to.equal(fromJS({
-      entries: ['Trainspotting']
+      items: ['Trainspotting']
     }));
   });
 
   it('handles NEXT', () => {
     const initialState = fromJS({
-      entries: ['Trainspotting', '28 Days Later']
+      items: ['Trainspotting', '28 Days Later']
     });
     const action = {type: 'NEXT'};
     const nextState = reducer(initialState, action);
@@ -35,7 +35,7 @@ describe('reducer', () => {
       vote: {
         pair: ['Trainspotting', '28 Days Later']
       },
-      entries: []
+      items: []
     }));
   });
 
@@ -44,7 +44,7 @@ describe('reducer', () => {
       vote: {
         pair: ['Trainspotting', '28 Days Later']
       },
-      entries: []
+      items: []
     });
     const action = {type: 'VOTE', entry: 'Trainspotting'};
     const nextState = reducer(initialState, action);
@@ -54,13 +54,13 @@ describe('reducer', () => {
         pair: ['Trainspotting', '28 Days Later'],
         tally: {Trainspotting: 1}
       },
-      entries: []
+      items: []
     }));
   });
 
   it('can be used with reduce', () => {
     const actions = [
-      {type: 'SET_ENTRIES', entries: ['Trainspotting', '28 Days Later']},
+      {type: 'SET_ITEMS', items: ['Trainspotting', '28 Days Later']},
       {type: 'NEXT'},
       {type: 'VOTE', entry: 'Trainspotting'},
       {type: 'VOTE', entry: '28 Days Later'},

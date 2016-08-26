@@ -3,7 +3,7 @@ import { IAction } from '../actions/action';
 
 // Reducer state interface
 export interface IVottingState extends Map<string, any> {
-  movies? : List<string>,
+  items? : List<string>,
   vote? : string,
   winner? : string
 }

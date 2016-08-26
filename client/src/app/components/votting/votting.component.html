@@ -1,0 +1,5 @@
+<votting>
+  <div *ngFor="let movie of vottingState.getIn(['vote', 'pair'], [])">
+    <vote-component [movie]="movie"></vote-component>
+  </div>
+</votting>
