@@ -2,18 +2,23 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 
 import { IAppState } from '../model/store';
-import { setState } from '../model/actions/votting';
+import { setState, vote } from '../model/actions/votting';
 
 @Injectable()
 export class VottingActions {
 
-  static SET_STATE: string = 'SET_STATE';
-
   constructor ( private ngRedux: NgRedux<IAppState> ) {}
 
-  // Basic action
+  /**
+   * Dispatch to the reducer a new state of the model.
+   * This action is not remote so we only affect the client state
+   */
   setState(newState : any): void {
     this.ngRedux.dispatch<any>(setState(newState));
+  }
+
+  vote(item : string) : void {
+    this.ngRedux.dispatch<any>(vote(item));
   }
 
 }

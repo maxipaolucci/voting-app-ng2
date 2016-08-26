@@ -6,7 +6,7 @@ import reducer from '../src/reducer';
 describe('reducer', () => {
 
   it('handles undefined initial state as an empty Map', () => {
-    const action = {type: 'SET_ITEMS', items: ['Trainspotting']};
+    const action = {type: 'SET_ITEMS', payload : { items: ['Trainspotting'] } };
     const nextState = reducer(undefined, action);
 
     expect(nextState).to.equal(fromJS({
@@ -16,7 +16,7 @@ describe('reducer', () => {
 
   it('handles SET_ITEMS', () => {
     const initialState = Map();
-    const action = {type: 'SET_ITEMS', items: ['Trainspotting']};
+    const action = {type: 'SET_ITEMS', payload : { items: ['Trainspotting']} };
     const nextState = reducer(initialState, action);
 
     expect(nextState).to.equal(fromJS({
@@ -46,7 +46,7 @@ describe('reducer', () => {
       },
       items: []
     });
-    const action = {type: 'VOTE', entry: 'Trainspotting'};
+    const action = {type: 'VOTE', payload : { item: 'Trainspotting'} };
     const nextState = reducer(initialState, action);
 
     expect(nextState).to.equal(fromJS({
@@ -60,11 +60,11 @@ describe('reducer', () => {
 
   it('can be used with reduce', () => {
     const actions = [
-      {type: 'SET_ITEMS', items: ['Trainspotting', '28 Days Later']},
+      {type: 'SET_ITEMS', payload : { items: ['Trainspotting', '28 Days Later']} },
       {type: 'NEXT'},
-      {type: 'VOTE', entry: 'Trainspotting'},
-      {type: 'VOTE', entry: '28 Days Later'},
-      {type: 'VOTE', entry: 'Trainspotting'},
+      {type: 'VOTE', payload : { item: 'Trainspotting'} },
+      {type: 'VOTE', payload : { item: '28 Days Later'} },
+      {type: 'VOTE', payload : { item: 'Trainspotting'} },
       {type: 'NEXT'}
     ];
     const finalState = actions.reduce(reducer, Map());

@@ -8,6 +8,6 @@ startServer(store);
 
 store.dispatch({
   type: 'SET_ITEMS',
-  items: require('./entries.json')
+  payload : { items: require('./entries.json') }
 });
 store.dispatch({type: 'NEXT'});

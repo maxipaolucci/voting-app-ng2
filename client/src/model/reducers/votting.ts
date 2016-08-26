@@ -8,7 +8,6 @@ export interface IVottingState extends Map<string, any> {
   winner? : string
 }
 
-
 // The initial state of this reducer
 export const VOTTING_INITIAL_STATE : IVottingState = Map<string, any>();
 

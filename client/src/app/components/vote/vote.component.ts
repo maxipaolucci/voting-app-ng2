@@ -1,5 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import {IVottingState} from "../../../model/reducers/votting";
+import {VottingActions} from "../../vottingActions.service";
+
 
 @Component({
   selector: 'vote-component',
@@ -8,5 +9,11 @@ import {IVottingState} from "../../../model/reducers/votting";
   styleUrls: ['./vote.component.scss']
 })
 export class VoteComponent {
-  @Input() movie: string;
+  @Input() item: string;
+
+  constructor(private vottingActions: VottingActions) { }
+
+  vote(item : string) : void {
+    this.vottingActions.vote(item);
+  }
 }
