@@ -50,8 +50,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    //this.vottingState.subscribe(state => {console.log(state.get('vote'))});
     this.socket.on('state', (state : any) => this.vottingActions.setState(state) );
   }
 }

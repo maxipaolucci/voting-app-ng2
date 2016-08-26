@@ -1,13 +1,13 @@
 import { addProviders, inject } from '@angular/core/testing';
-import { HelloComponent } from './hello.component';
+import { VottingComponent } from './votting.component';
 
 describe('App', () => {
   beforeEach(() => {
     addProviders([
-      HelloComponent
+      VottingComponent
     ]);
   });
-  it ('should work', inject([HelloComponent], (hello: HelloComponent) => {
+  it ('should work', inject([VottingComponent], (hello: VottingComponent) => {
     // Add real test here
     expect(2).toBe(2);
   }));
