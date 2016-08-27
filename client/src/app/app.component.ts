@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import * as io from 'socket.io-client';
 import {NgRedux, select, DevToolsExtension} from 'ng2-redux';
 import { Observable } from 'rxjs';
@@ -18,7 +18,8 @@ import '../../public/css/styles.css';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./bootstrap3.scss', './app.component.scss'],
   providers: [ VottingMiddleware ]
 })
 export class AppComponent implements OnInit {
