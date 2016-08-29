@@ -54,7 +54,7 @@ gulp.task('watch', function() {
  * generates a new build (dist directory)
  */
 gulp.task('build', function(callback) {
-  runSequence('clean-build', 'sass', 'npm:build', callback);
+  runSequence('clean-build', 'npm:build', callback);
 });
 
 /**
