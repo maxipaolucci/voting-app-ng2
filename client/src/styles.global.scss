@@ -1,0 +1,12 @@
+@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  background-color: #0147A7;
+  color: #fff;
+}
+
+@media (max-width: $screen-xs-max) { }
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { }
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) { }
+@media (min-width: $screen-lg-min) { }

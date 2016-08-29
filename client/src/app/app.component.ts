@@ -12,14 +12,11 @@ import { __DEVMODE__ } from "../constants/config";
 import {VottingActions} from "./vottingActions.service";
 import {VottingMiddleware} from "./vottingMiddleware.service";
 
-import '../../public/css/styles.css';
-
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./bootstrap3.scss', './app.component.scss'],
+  styleUrls: ['./app.component.scss'],
   providers: [ VottingMiddleware ]
 })
 export class AppComponent implements OnInit {

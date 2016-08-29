@@ -7,6 +7,8 @@ import {VottingActions} from "./vottingActions.service";
 import {VottingComponent} from "./components/votting/votting.component";
 import {VoteComponent} from "./components/vote/vote.component";
 
+import '../styles.global.scss';
+
 @NgModule({
   imports: [ BrowserModule ],
   declarations: [ AppComponent, VottingComponent, VoteComponent ],

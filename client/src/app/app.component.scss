@@ -1,20 +1,27 @@
-main {
-    padding: 1em;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    margin-top: 50px;
-    display: block;
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
-    .test {
-      .inside-test {
-        color: #8a4182;
-        font-weight: bold;
-        font-size: 20pt;
-      }
+app {
+  padding: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+  display: block;
+
+  .test {
+    //width: $maxi + 'px';
+    .inside-test {
+      color: #8a4182;
+      font-weight: bold;
+      font-size: 20pt;
     }
-}
+  }
 
-@media (max-width: $screen-xs-max) { }
-@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { }
-@media (min-width: $screen-md-min) and (max-width: $screen-md-max) { }
-@media (min-width: $screen-lg-min) { }
+  @media (max-width: $screen-xs-max) {
+  }
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  }
+  @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+  }
+  @media (min-width: $screen-lg-min) {
+  }
+}
