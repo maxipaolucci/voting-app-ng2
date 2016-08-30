@@ -5,6 +5,7 @@
 app {
   padding: 10px;
   display: block;
+  height: 100%;
 
   nav {
     background-color: $main-purple;
@@ -26,7 +27,7 @@ app {
   }
 
   .app-main-container {
-
+    height: 100%;
   }
 
   @media (max-width: $screen-xs-max) {

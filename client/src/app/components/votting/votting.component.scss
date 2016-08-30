@@ -1,10 +1,9 @@
 @import "../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
 votting {
-  position: fixed;
   display: flex;
   flex-direction: column;
-
+  height: 100%;
 
   @media (max-width: $screen-xs-max) { }
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { }
