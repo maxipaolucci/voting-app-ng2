@@ -10,7 +10,7 @@ Another boilerplate to start developing web applications without loose time doin
 
 ###The client includes by default:
 * Angular 2
-* Redux with ng2-redux
+* Redux (ng2-redux, DevToolsExtension, redux-logger)
 * Bootstrap 3
 * Gulp for building tasks.
 * Webpack to bundle resources and serve the webapp.

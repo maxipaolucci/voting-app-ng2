@@ -1,4 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import * as io from 'socket.io-client';
 import {NgRedux, select, DevToolsExtension} from 'ng2-redux';
 import { Observable } from 'rxjs';
@@ -20,15 +21,19 @@ import {VottingMiddleware} from "./vottingMiddleware.service";
   providers: [ VottingMiddleware ]
 })
 export class AppComponent implements OnInit {
-  name = "Maxi";
+  title : string = "Voting App";
   socket : any = null;
   @select((state : IAppState) => state.vottingModel) vottingState: Observable<IVottingState>;
 
   constructor(
+    private titleService : Title,
     private ngRedux: NgRedux<IAppState>,
     private devTools: DevToolsExtension,
     private vottingActions: VottingActions,
     private vottingMiddleware: VottingMiddleware) {
+
+    //set title
+    this.titleService.setTitle(this.title);
 
     this.socket = io(`${location.protocol}//${location.hostname}:3030`);
 

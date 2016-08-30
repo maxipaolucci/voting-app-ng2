@@ -1,10 +1,16 @@
 <app>
-  <div class="container-fluid">
-    <h1>Hello from Angular 2 App with Webpack to <strong>{{name}}</strong></h1>
-    <img src="../../public/images/angular.png">
-    <div class="test">
-      <div class="inside-test">Test scss styles</div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="../../public/images/angular.png">
+        </a>
+      </div>
+      <div class="nav navbar-left navbar-text app-title">{{title}}</div>
     </div>
+  </nav>
+
+  <div class="app-main-container">
     <votting-component [vottingState]="vottingState | async"></votting-component>
   </div>
 </app>
