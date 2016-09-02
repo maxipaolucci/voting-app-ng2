@@ -1,5 +1,3 @@
 <votting>
-  <div *ngFor="let item of getVoteDuple()">
-    <vote-component [item]="item"></vote-component>
-  </div>
+  <vote-component *ngFor="let item of getVoteDuple()" [item]="item"></vote-component>
 </votting>
