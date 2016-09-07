@@ -3,9 +3,9 @@ import { Title } from '@angular/platform-browser';
 import * as io from 'socket.io-client';
 import {NgRedux, select, DevToolsExtension} from 'ng2-redux';
 import { Observable } from 'rxjs';
+import { List } from 'immutable';
 
 import rootReducer from '../model/store';
-import { IVottingState } from '../model/reducers/votting';
 import { IAppState, APP_INITIAL_STATE } from '../model/store';
 import reduxLogger from '../model/configureLogger';
 
@@ -23,7 +23,8 @@ import {VottingMiddleware} from "./vottingMiddleware.service";
 export class AppComponent implements OnInit {
   title : string = "Voting App";
   socket : any = null;
-  @select((state : IAppState) => state.vottingModel) vottingState: Observable<IVottingState>;
+  @select( (state : IAppState) => state.vottingModel.getIn(['vote', 'pair'], List<string>()) ) votePair: Observable<List<string>>; //vote pair data
+  //@select( (state : IAppState) => state.vottingModel.get('vote', List<string>()) ) vote: Observable<Map<string, any>>; //vote data
 
   constructor(
     private titleService : Title,
@@ -53,6 +54,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.socket.on('state', (state : any) => this.vottingActions.setState(state) );
+    this.socket.on('state', (state : any) => this.vottingActions.setState(state) ); //set a callback for 'state' events in socket
   }
 }

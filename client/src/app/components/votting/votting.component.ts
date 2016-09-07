@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import {IVottingState} from "../../../model/reducers/votting";
-import { List } from 'Immutable';
+import { List } from 'immutable';
+
 import {VottingActions} from "../../vottingActions.service";
 
 @Component({
@@ -10,18 +10,14 @@ import {VottingActions} from "../../vottingActions.service";
   styleUrls: ['./votting.component.scss']
 })
 export class VottingComponent {
-  @Input() vottingState: IVottingState;
+  @Input() votePair : List<string>;
 
   constructor(private vottingActions: VottingActions) {}
 
   /**
-   * Return the curret duple of items to vote
-   * @returns {List<string>}
+   * Vote the item as parameter
+   * @param item (string)
    */
-  getVoteDuple() : List<string> {
-    return this.vottingState.getIn(['vote', 'pair'], []);
-  }
-
   vote(item : string) : void {
     this.vottingActions.vote(item);
   }
