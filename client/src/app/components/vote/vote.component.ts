@@ -1,5 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import {VottingActions} from "../../vottingActions.service";
+import { Component, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 
 
 @Component({
@@ -10,10 +9,5 @@ import {VottingActions} from "../../vottingActions.service";
 })
 export class VoteComponent {
   @Input() item: string;
-
-  constructor(private vottingActions: VottingActions) { }
-
-  vote(item : string) : void {
-    this.vottingActions.vote(item);
-  }
+  @Output() voted: EventEmitter<any> = new EventEmitter();
 }
