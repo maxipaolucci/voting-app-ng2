@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import * as io from 'socket.io-client';
 import {NgRedux, select, DevToolsExtension} from 'ng2-redux';
+import { NgReduxRouter } from 'ng2-redux-router';
 import { Observable } from 'rxjs';
 import { List } from 'immutable';
 
@@ -26,10 +27,11 @@ export class AppComponent implements OnInit {
   //@select( (state : IAppState) => state.vottingModel.getIn(['vote', 'pair'], List<string>()) ) votePair: Observable<List<string>>; //vote pair data using fn selector & inmutable
   @select( ['vottingModel', 'vote', 'pair'] ) votePair: Observable<List<string>>; //vote pair data using path selector & inmutable
   @select( ['vottingModel', 'vote'] ) vote: Observable<Map<string, any>>; //vote data
-
+  @select((state : IAppState) => {console.log(456); return state;}) state : Observable<IAppState>;
   constructor(
     private titleService : Title,
     private ngRedux: NgRedux<IAppState>,
+    private ngReduxRouter: NgReduxRouter,
     private devTools: DevToolsExtension,
     private vottingActions: VottingActions,
     private vottingMiddleware: VottingMiddleware) {
@@ -52,6 +54,8 @@ export class AppComponent implements OnInit {
     }
 
     this.ngRedux.configureStore(rootReducer, APP_INITIAL_STATE, middlewares, enhancers);
+    this.ngReduxRouter.initialize();
+    console.log(123);
   }
 
   ngOnInit() {
