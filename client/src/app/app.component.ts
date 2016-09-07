@@ -23,8 +23,9 @@ import {VottingMiddleware} from "./vottingMiddleware.service";
 export class AppComponent implements OnInit {
   title : string = "Voting App";
   socket : any = null;
-  @select( (state : IAppState) => state.vottingModel.getIn(['vote', 'pair'], List<string>()) ) votePair: Observable<List<string>>; //vote pair data
-  //@select( (state : IAppState) => state.vottingModel.get('vote', List<string>()) ) vote: Observable<Map<string, any>>; //vote data
+  //@select( (state : IAppState) => state.vottingModel.getIn(['vote', 'pair'], List<string>()) ) votePair: Observable<List<string>>; //vote pair data using fn selector & inmutable
+  @select( ['vottingModel', 'vote', 'pair'] ) votePair: Observable<List<string>>; //vote pair data using path selector & inmutable
+  @select( ['vottingModel', 'vote'] ) vote: Observable<Map<string, any>>; //vote data
 
   constructor(
     private titleService : Title,
