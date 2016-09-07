@@ -24,10 +24,13 @@ import {VottingMiddleware} from "./vottingMiddleware.service";
 export class AppComponent implements OnInit {
   title : string = "Voting App";
   socket : any = null;
-  //@select( (state : IAppState) => state.vottingModel.getIn(['vote', 'pair'], List<string>()) ) votePair: Observable<List<string>>; //vote pair data using fn selector & inmutable
-  @select( ['vottingModel', 'vote', 'pair'] ) votePair: Observable<List<string>>; //vote pair data using path selector & inmutable
-  @select( ['vottingModel', 'vote'] ) vote: Observable<Map<string, any>>; //vote data
-  @select((state : IAppState) => {console.log(456); return state;}) state : Observable<IAppState>;
+  @select( (state : IAppState) => {
+    //console.log(state.vottingModel.getIn(['vote', 'pair'], List<string>()));
+    return state.vottingModel.getIn(['vote', 'pair'], List<string>());
+  } ) votePair: Observable<List<string>>; //vote pair data using fn selector & inmutable
+  //@select( ['vottingModel', 'vote', 'pair'] ) votePair: Observable<List<string>>; //vote pair data using path selector & inmutable
+  //@select( ['vottingModel', 'vote'] ) vote: Observable<Map<string, any>>; //vote data
+  //@select((state : IAppState) => {console.log(456); return state;}) state : Observable<IAppState>;
   constructor(
     private titleService : Title,
     private ngRedux: NgRedux<IAppState>,
@@ -55,7 +58,6 @@ export class AppComponent implements OnInit {
 
     this.ngRedux.configureStore(rootReducer, APP_INITIAL_STATE, middlewares, enhancers);
     this.ngReduxRouter.initialize();
-    console.log(123);
   }
 
   ngOnInit() {

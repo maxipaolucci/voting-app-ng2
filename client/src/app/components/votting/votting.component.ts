@@ -13,12 +13,12 @@ import {IAppState} from "../../../model/store";
   styleUrls: ['./votting.component.scss']
 })
 export class VottingComponent implements OnChanges{
-  //@Input() votePair : List<string>;
+  @Input() votePair : List<string>;
   //@select( ['vottingModel', 'vote', 'pair'] ) votePair: Observable<List<string>>; //vote pair data using path selector & inmutable
-  @select( (state : IAppState) => {
-    console.log(state.vottingModel.getIn(['vote', 'pair'], List<string>()));
-    return state.vottingModel.getIn(['vote', 'pair'], List<string>());
-  } ) votePair: Observable<List<string>>; //vote pair data using fn selector & inmutable
+  // @select( (state : IAppState) => {
+  //   console.log(state.vottingModel.getIn(['vote', 'pair'], List<string>()));
+  //   return state.vottingModel.getIn(['vote', 'pair'], List<string>());
+  // } ) votePair: Observable<List<string>>; //vote pair data using fn selector & inmutable
 
   constructor(private vottingActions: VottingActions) {}
 
