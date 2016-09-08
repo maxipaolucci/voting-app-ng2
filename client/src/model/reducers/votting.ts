@@ -17,8 +17,18 @@ export const VOTTING_INITIAL_STATE : IVottingState = Map<string, any>();
  * @param newState (any) . The new state. Should be castable to <IVottingState>
  * @returns {IVottingState} . The merged new state
  */
-const setState = (state : IVottingState, newState: any) : IVottingState => {
+const setState = (state : IVottingState, newState : any) : IVottingState => {
   return <IVottingState>state.merge(<IVottingState>fromJS(newState));
+};
+
+/**
+ * Set the last voted value in the vote state
+ * @param state (IVottingState) . The current state
+ * @param item (string) . The last voted value
+ * @returns {IVottingState} . The new state with last voted updated
+ */
+const vote = (state : IVottingState, item : string ) : IVottingState => {
+  return <IVottingState>state.updateIn(['vote', 'lastVoted'], item, lastVoted => lastVoted = item);
 };
 
 /**
@@ -32,6 +42,9 @@ export function voteReducer(state : IVottingState = VOTTING_INITIAL_STATE, actio
 
     case 'SET_STATE':
       return setState(state, action.payload.state);
+
+    case 'VOTE':
+      return vote(state, action.payload.item);
 
     default:
       return state;
