@@ -18,7 +18,7 @@ export const VOTTING_INITIAL_STATE : IVottingState = Map<string, any>();
  * @returns {IVottingState} . The merged new state
  */
 const setState = (state : IVottingState, newState : any) : IVottingState => {
-  return <IVottingState>state.merge(<IVottingState>fromJS(newState));
+  return state.mergeDeep(<IVottingState>fromJS(newState));
 };
 
 /**
@@ -28,7 +28,7 @@ const setState = (state : IVottingState, newState : any) : IVottingState => {
  * @returns {IVottingState} . The new state with last voted updated
  */
 const vote = (state : IVottingState, item : string ) : IVottingState => {
-  return <IVottingState>state.updateIn(['vote', 'lastVoted'], item, lastVoted => lastVoted = item);
+  return state.updateIn(['vote','lastVoted'], '', lastVoted => item);
 };
 
 /**

@@ -8,14 +8,14 @@ import { Component, Input, ChangeDetectionStrategy, EventEmitter, Output } from 
   styleUrls: ['./vote.component.scss']
 })
 export class VoteComponent {
-  private isVoted = false;
   @Input() item: string;
+  @Input() disabled: boolean;
   @Output() voted: EventEmitter<any> = new EventEmitter();
 
   onVoted(item : string) {
-    if (!this.isVoted) {
+    if (!this.disabled) {
       this.voted.emit(item);
-      this.isVoted = true;
+      this.disabled = true;
     }
   }
 }
