@@ -7,3 +7,7 @@ export const setState = (state: any) : IAction => {
 export const vote = (item : string) : IAction => {
   return { type: 'VOTE', payload: { item }, meta: { remote : true } }
 }
+
+export const next = () : IAction => {
+  return { type: 'NEXT', meta: { remote : true } }
+}

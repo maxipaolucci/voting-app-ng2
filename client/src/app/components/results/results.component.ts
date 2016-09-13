@@ -16,4 +16,8 @@ export class ResultsComponent {
   @select(['vottingModel', 'vote', 'tally']) voteTally : Observable<Map<string, number>>;
 
   constructor(private vottingActions: VottingActions) {}
+
+  next() {
+    this.vottingActions.next();
+  }
 }

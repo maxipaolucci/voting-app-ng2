@@ -1,6 +1,9 @@
 <div class="voting-app-container results-box">
   <div class="item-votes" *ngFor="let item of votePair | async">
     <span class="item-title">{{item}}: </span>
-    <span class="item-votes-count" >{{ (voteTally | async).get(item) }}</span>
+    <span class="item-votes-count" >{{ (voteTally | async).get(item, 0) }}</span>
   </div>
+</div>
+<div class="voting-app-container next-box" (click)="next()">
+  Next
 </div>

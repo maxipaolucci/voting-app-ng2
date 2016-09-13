@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 
 import { IAppState } from '../model/store';
-import { setState, vote } from '../model/actions/votting';
+import { setState, vote, next } from '../model/actions/votting';
 
 @Injectable()
 export class VottingActions {
@@ -17,8 +17,19 @@ export class VottingActions {
     this.ngRedux.dispatch<any>(setState(newState));
   }
 
+  /**
+   * Dispatch vote action
+   * @param item
+   */
   vote(item : string) : void {
     this.ngRedux.dispatch<any>(vote(item));
+  }
+
+  /**
+   * Dispatch next action
+   */
+  next() : void {
+    this.ngRedux.dispatch<any>(next());
   }
 
 }
