@@ -11,29 +11,9 @@ import {Observable} from "rxjs/Rx";
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss']
 })
-export class ResultsComponent implements OnInit {
-  private tally : Map<string, number> = null;
+export class ResultsComponent {
   @select(['vottingModel', 'vote', 'pair']) votePair : Observable<List<string>>;
   @select(['vottingModel', 'vote', 'tally']) voteTally : Observable<Map<string, number>>;
 
   constructor(private vottingActions: VottingActions) {}
-
-  ngOnInit() {
-    //we subscribe to this observable to receive the tally async
-    this.voteTally.subscribe((value : Map<string, number>) => this.tally = value );
-  }
-
-  /**
-   * Returns the amount of votes from an item in the current pair
-   * @param item (string). The item we are looking at
-   * @returns {number}
-   */
-  getVotes(item : string) : number {
-    //check for the tally to be not null (before voteTally gets a value from the server)
-    if (this.tally ) {
-      return this.tally.get(item, 0);
-    }
-
-    return 0;
-  }
 }
