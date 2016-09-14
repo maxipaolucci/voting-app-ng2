@@ -1,4 +1,4 @@
-#StartupJS with Angular
+#A voting sample app with Angular2 and Redux
 
 Another boilerplate to start developing web applications without loose time doing server and client configuration. Go directly to the core and avoid the boring stuff.
 
@@ -20,7 +20,7 @@ Another boilerplate to start developing web applications without loose time doin
 
 ##Setup
 
-1) run `>git clone http://github.com/maxipaolucci/startupJSwithAngular.git`
+1) run `>git clone https://github.com/maxipaolucci/voting-app-ng2.git`
 
 2) Install node and npm in your pc (to check if you already have it installed do `>npm --version`  and  `>node --version`)
 
@@ -29,7 +29,9 @@ Another boilerplate to start developing web applications without loose time doin
 
 3.1) Go to server directory and run `>npm install`
 
-3.2) Start the server doing: `>npm run start`  (the server runs in port 3030)
+3.2) Start the server doing: `>npm start`  (the server runs in port 3030)
+
+3.3) Run the test cases: `>npm run test`
 
 
 ###Client Setup

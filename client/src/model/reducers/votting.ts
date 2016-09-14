@@ -28,7 +28,7 @@ const setState = (state : IVottingState, newState : any) : IVottingState => {
  * @returns {IVottingState} . The new state with last voted updated
  */
 const vote = (state : IVottingState, item : string ) : IVottingState => {
-  return state.updateIn(['vote','lastVoted'], '', lastVoted => item);
+  return state.set('lastVoted', item);
 };
 
 /**

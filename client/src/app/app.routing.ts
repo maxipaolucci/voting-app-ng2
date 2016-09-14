@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {VottingComponent} from "./components/votting/votting.component";
 import {ResultsComponent} from "./components/results/results.component";
+import {WinnerComponent} from "./components/winner/winner.component";
 
 const appRoutes: Routes = [
   {
@@ -16,6 +17,10 @@ const appRoutes: Routes = [
   {
     path: 'results',
     component: ResultsComponent
+  },
+  {
+    path: 'winner',
+    component: WinnerComponent
   }
 ];
 

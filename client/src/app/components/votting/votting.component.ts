@@ -1,4 +1,5 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
+import { Router } from '@angular/router';
 import { List } from 'immutable';
 
 import {VottingActions} from "../../vottingActions.service";
@@ -13,11 +14,19 @@ import { select } from 'ng2-redux';
 })
 export class VottingComponent{
   @select( ['vottingModel', 'vote', 'pair'] ) votePair: Observable<List<string>>; //vote pair data using path selector & immutable
-  @select( ['vottingModel', 'vote', 'lastVoted'] ) lastVoted: Observable<string>; //get lastVoted 
+  @select( ['vottingModel', 'lastVoted'] ) lastVoted: Observable<string>; //get lastVoted
   @select(['vottingModel', 'winner']) winner : Observable<string>;
 
-  constructor(private vottingActions: VottingActions) {}
-
+  constructor(private vottingActions: VottingActions, private router: Router) {}
+  
+  ngOnInit() {
+    this.winner.subscribe(winner => {
+      if (winner) {
+        this.router.navigate(['/winner']);
+      }
+    });
+  }
+  
   /**
    * Vote the item as parameter
    * @param item (string)

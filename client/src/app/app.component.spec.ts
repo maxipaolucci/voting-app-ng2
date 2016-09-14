@@ -1,10 +1,14 @@
 import { addProviders, inject } from '@angular/core/testing';
+import { Title }  from '@angular/platform-browser';
+import { NgRedux, DevToolsExtension } from 'ng2-redux';
+import {VottingActions} from "./vottingActions.service";
 import { AppComponent } from './app.component';
+import {NgReduxRouter} from "ng2-redux-router/index";
 
 describe('App', () => {
   beforeEach(() => {
     addProviders([
-      AppComponent
+      AppComponent, Title, NgRedux, DevToolsExtension, VottingActions, NgReduxRouter
     ]);
   });
   it ('should work', inject([AppComponent], (app: AppComponent) => {
