@@ -1,6 +1,9 @@
-<vote-component
-    *ngFor="let item of votePair | async"
-    [item]="item"
-    [disabled]="item === (lastVoted | async)"
-    (voted)="vote($event)">
-</vote-component>
+<div *ngIf="!(winner | async)">
+  <vote-component
+      *ngFor="let item of votePair | async"
+      [item]="item"
+      [disabled]="item === (lastVoted | async)"
+      (voted)="vote($event)">
+  </vote-component>
+</div>
+<div class="voting-app-container winner-box" *ngIf="winner | async">The winner is: {{winner | async }}</div>

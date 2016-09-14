@@ -1,8 +1,11 @@
 <div class="voting-app-container results-box">
-  <div class="item-votes" *ngFor="let item of votePair ">
-    <span class="item-title">{{item}}: </span>
-    <span class="item-votes-count" >{{ voteTally[item] }}</span>
+  <div *ngIf="!(winner | async)">
+    <div class="item-votes" *ngFor="let item of votePair ">
+      <span class="item-title">{{item}}: </span>
+      <span class="item-votes-count" >{{ voteTally[item] }}</span>
+    </div>
   </div>
+  <div *ngIf="winner | async">The winner is: {{winner | async }}</div>
 </div>
 <div class="voting-app-container next-box" (click)="next()">
   Next

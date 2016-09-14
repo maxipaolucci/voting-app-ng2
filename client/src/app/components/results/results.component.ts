@@ -15,6 +15,7 @@ export class ResultsComponent implements OnInit {
   private votePair : List<string> = List<string>();
   private voteTally : any = {};
   @select(['vottingModel', 'vote']) vote : Observable<Map<string, any>>;
+  @select(['vottingModel', 'winner']) winner : Observable<string>;
 
   constructor(private vottingActions: VottingActions) {}
 
