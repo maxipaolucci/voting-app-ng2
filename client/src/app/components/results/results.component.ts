@@ -7,15 +7,25 @@ import {Observable} from "rxjs/Rx";
 
 @Component({
   selector: 'results-component',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss']
 })
-export class ResultsComponent {
-  @select(['vottingModel', 'vote', 'pair']) votePair : Observable<List<string>>;
-  @select(['vottingModel', 'vote', 'tally']) voteTally : Observable<Map<string, number>>;
+export class ResultsComponent implements OnInit {
+  private votePair : List<string> = List<string>();
+  private voteTally : any = {};
+  @select(['vottingModel', 'vote']) vote : Observable<Map<string, any>>;
 
   constructor(private vottingActions: VottingActions) {}
+
+  ngOnInit() {
+    this.vote.subscribe(vote => {
+      if (vote) {
+        this.votePair = vote.get('pair');
+        this.votePair.map(item => this.voteTally[item] = vote.getIn(['tally', item], 0) );
+      }
+    });
+  }
 
   next() {
     this.vottingActions.next();
