@@ -1,12 +1,16 @@
-<div class="voting-app-container results-box">
-  <div *ngIf="!(winner | async)">
+<!-- RESTART BTN -->
+<div class="voting-app-container button-box restart-box" (click)="restart()">Restart</div>
+
+<!-- NO WINNER YET -->
+<div *ngIf="!(winner | async)" class="voting-app-container results-box">
     <div class="item-votes" *ngFor="let item of votePair ">
       <span class="item-title">{{item}}: </span>
       <span class="item-votes-count" >{{ voteTally[item] }}</span>
     </div>
-  </div>
-  <div *ngIf="winner | async">The winner is: {{winner | async }}</div>
 </div>
-<div class="voting-app-container next-box" (click)="next()">
-  Next
-</div>
+
+<!-- HAVE A WINNER -->
+<winner-component *ngIf="winner | async"></winner-component>
+
+<!-- NEXT BTN -->
+<div class="voting-app-container button-box next-box" (click)="next()">Next</div>

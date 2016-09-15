@@ -8,6 +8,10 @@
   height: 100%;
   padding-bottom: 20px;
 
+  .restart-box {
+    margin-bottom: 10px;
+  }
+
   .results-box {
     flex: 1 0 0;
     display: flex;
@@ -27,7 +31,7 @@
     }
   }
 
-  .next-box {
+  .button-box {
     text-align: center;
     cursor: pointer;
   }

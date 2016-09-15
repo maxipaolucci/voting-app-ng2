@@ -1,7 +1,7 @@
-import {List, Map} from 'immutable';
+import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
 
-import {setItems, next, vote} from '../src/core';
+import {setItems, next, vote, restart} from '../src/core';
 
 describe('application logic', () => {
 
@@ -162,6 +162,35 @@ describe('application logic', () => {
       }));
     });
 
+  });
+  
+  describe('restart', () => {
+    it('restart when we have a winner', () => {
+      const state = Map({
+        winner: 'Trainspotting'
+      });
+      const nextState = restart(state);
+      expect(nextState).to.equal(Map({
+        items: fromJS(require('../entries.json'))
+      }));
+    });
+
+    it('restart in the middle of the voting process', () => {
+      const state = Map({
+        items: List.of('Sunshine'),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later'),
+          tally: Map({
+            'Trainspotting': 1,
+            '28 Days Later': 2
+          })
+        })
+      });
+      const nextState = restart(state);
+      expect(nextState).to.equal(Map({
+        items: fromJS(require('../entries.json'))
+      }));
+    });
   });
 
 });

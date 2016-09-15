@@ -35,4 +35,11 @@ export class ResultsComponent implements OnInit {
   next() {
     this.vottingActions.next();
   }
+
+  /**
+   * restart button handler
+   */
+  restart() {
+    this.vottingActions.restart();
+  }
 }

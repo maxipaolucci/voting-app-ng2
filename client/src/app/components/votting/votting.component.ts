@@ -20,6 +20,7 @@ export class VottingComponent{
   constructor(private vottingActions: VottingActions, private router: Router) {}
   
   ngOnInit() {
+    this.lastVoted.subscribe(l => console.log(l));
     this.winner.subscribe(winner => {
       if (winner) {
         this.router.navigate(['/winner']);
