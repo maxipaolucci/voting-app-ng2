@@ -12,7 +12,8 @@ describe('application logic', () => {
       const items = List.of('Trainspotting', '28 Days Later');
       const nextState = setItems(state, items);
       expect(nextState).to.equal(Map({
-        items: List.of('Trainspotting', '28 Days Later')
+        items: List.of('Trainspotting', '28 Days Later'),
+        originalItems: List.of('Trainspotting', '28 Days Later')
       }));
     });
 
@@ -21,7 +22,8 @@ describe('application logic', () => {
       const items = ['Trainspotting', '28 Days Later'];
       const nextState = setItems(state, items);
       expect(nextState).to.equal(Map({
-        items: List.of('Trainspotting', '28 Days Later')
+        items: List.of('Trainspotting', '28 Days Later'),
+        originalItems: List.of('Trainspotting', '28 Days Later')
       }));
     });
 
@@ -167,17 +169,23 @@ describe('application logic', () => {
   describe('restart', () => {
     it('restart when we have a winner', () => {
       const state = Map({
-        winner: 'Trainspotting'
+        winner: 'Trainspotting',
+        originalItems: List.of('Trainspotting', '28 Days Later')
       });
       const nextState = restart(state);
       expect(nextState).to.equal(Map({
-        items: fromJS(require('../entries.json'))
+        items: List(),
+        originalItems: List.of('Trainspotting', '28 Days Later'),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later')
+        })
       }));
     });
 
     it('restart in the middle of the voting process', () => {
       const state = Map({
         items: List.of('Sunshine'),
+        originalItems: List.of('Trainspotting', '28 Days Later','Sunshine'),
         vote: Map({
           pair: List.of('Trainspotting', '28 Days Later'),
           tally: Map({
@@ -188,7 +196,11 @@ describe('application logic', () => {
       });
       const nextState = restart(state);
       expect(nextState).to.equal(Map({
-        items: fromJS(require('../entries.json'))
+        items: List.of('Sunshine'),
+        originalItems: List.of('Trainspotting', '28 Days Later','Sunshine'),
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later')
+        })
       }));
     });
   });

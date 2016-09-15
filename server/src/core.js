@@ -19,7 +19,8 @@ function getWinner(vote) {
 export const INITIAL_STATE = Map();
 
 export function setItems(state, items) {
-  return state.set('items', List(items));
+  return state.set('items', List(items))
+      .set('originalItems', List(items));
 }
 
 export function next(state) {
@@ -44,9 +45,10 @@ export function vote(state, item) {
 }
 
 export function restart(state) {
-  const newState = state.remove('winner')
+  let newState = state.remove('winner')
       .remove('items')
       .remove('vote');
 
-  return setItems(newState, require('../entries.json'))
+  newState = setItems(newState, state.get('originalItems'));
+  return next(newState);
 }

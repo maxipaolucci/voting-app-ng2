@@ -14,7 +14,8 @@ describe('store', () => {
       payload : { items: ['Trainspotting', '28 Days Later'] }
     });
     expect(store.getState()).to.equal(fromJS({
-      items: ['Trainspotting', '28 Days Later']
+      items: ['Trainspotting', '28 Days Later'],
+      originalItems: ['Trainspotting', '28 Days Later'],
     }));
   });
 
