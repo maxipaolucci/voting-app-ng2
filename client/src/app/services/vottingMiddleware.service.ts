@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {IAction} from "../model/actions/action";
-import {IAppState} from "../model/store";
+import {IAction} from "../../model/actions/action";
+import {IAppState} from "../../model/store";
 import {NgRedux} from "ng2-redux/lib/index";
 
 @Injectable()
-export class VottingMiddleware {
+export class VottingMiddlewareService {
   constructor() {}
 
   manageRemote = (socket : any) => (store : NgRedux<IAppState>) => (next : any) => (action : IAction) => {

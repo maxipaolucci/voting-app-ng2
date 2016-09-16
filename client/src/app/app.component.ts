@@ -11,15 +11,15 @@ import { IAppState, APP_INITIAL_STATE } from '../model/store';
 import reduxLogger from '../model/configureLogger';
 
 import { __DEVMODE__ } from "../constants/config";
-import {VottingActions} from "./vottingActions.service";
-import {VottingMiddleware} from "./vottingMiddleware.service";
+import {VottingActionsService} from "./services/vottingActions.service.ts";
+import {VottingMiddlewareService} from "./services/vottingMiddleware.service.ts";
 
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ VottingMiddleware ]
+  providers: [ VottingMiddlewareService ]
 })
 export class AppComponent implements OnInit {
   title : string = "Voting App";
@@ -36,8 +36,8 @@ export class AppComponent implements OnInit {
     private ngRedux: NgRedux<IAppState>,
     private ngReduxRouter: NgReduxRouter,
     private devTools: DevToolsExtension,
-    private vottingActions: VottingActions,
-    private vottingMiddleware: VottingMiddleware) {
+    private vottingActionsService: VottingActionsService,
+    private vottingMiddlewareService: VottingMiddlewareService) {
 
     //set title
     this.titleService.setTitle(this.title);
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
     this.socket = io(`${location.protocol}//${location.hostname}:3030`);
 
     let enhancers : any[] = [];
-    let middlewares : any[] = [ vottingMiddleware.manageRemote(this.socket) ];
+    let middlewares : any[] = [ vottingMiddlewareService.manageRemote(this.socket) ];
     // ... add whatever other enhancers you want.
 
     if (__DEVMODE__) {
@@ -61,6 +61,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.socket.on('state', (state : any) => this.vottingActions.setState(state) ); //set a callback for 'state' events in socket
+    this.socket.on('state', (state : any) => this.vottingActionsService.setState(state) ); //set a callback for 'state' events in socket
   }
 }

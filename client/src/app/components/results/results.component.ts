@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy, EventEmitter, Output, OnInit } from '@angular/core';
 import { List, Map } from  'immutable';
 import {select} from "ng2-redux/lib/index";
-import {VottingActions} from "../../vottingActions.service";
+import {VottingActionsService} from "../../services/vottingActions.service.ts";
 import {Observable} from "rxjs/Rx";
 
 
@@ -17,7 +17,7 @@ export class ResultsComponent implements OnInit {
   @select(['vottingModel', 'vote']) vote : Observable<Map<string, any>>;
   @select(['vottingModel', 'winner']) winner : Observable<string>;
 
-  constructor(private vottingActions: VottingActions) {}
+  constructor(private vottingActionsService: VottingActionsService) {}
 
   ngOnInit() {
     //subscribe to vote observable and populate pair and tally.
@@ -33,13 +33,13 @@ export class ResultsComponent implements OnInit {
    * next button handler
    */
   next() {
-    this.vottingActions.next();
+    this.vottingActionsService.next();
   }
 
   /**
    * restart button handler
    */
   restart() {
-    this.vottingActions.restart();
+    this.vottingActionsService.restart();
   }
 }

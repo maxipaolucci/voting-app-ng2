@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {select} from "ng2-redux/lib/index";
 import {Observable} from "rxjs/Rx";
 
@@ -10,6 +10,5 @@ import {Observable} from "rxjs/Rx";
   styleUrls: ['./winner.component.scss']
 })
 export class WinnerComponent {
-  //@Input() winner: string;
   @select(['vottingModel', 'winner']) winner : Observable<string>;
 }

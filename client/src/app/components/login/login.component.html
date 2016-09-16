@@ -1,0 +1,9 @@
+<div class="voting-app-container login-box">
+
+    <div class="form-row">
+      <label for="username">Username:</label>
+      <input #username id="username" type="text" placeholder="Username" (keyup.enter)="login(username.value)" />
+      <button type="button" class="btn btn-primary" (click)="login(username.value)">Login</button>
+    </div>
+
+</div>

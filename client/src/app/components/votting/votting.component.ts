@@ -2,7 +2,7 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
 import { Router } from '@angular/router';
 import { List } from 'immutable';
 
-import {VottingActions} from "../../vottingActions.service";
+import {VottingActionsService} from "../../services/vottingActions.service.ts";
 import {Observable} from "rxjs/Rx";
 import { select } from 'ng2-redux';
 
@@ -17,7 +17,7 @@ export class VottingComponent{
   @select( ['vottingModel', 'lastVoted'] ) lastVoted: Observable<string>; //get lastVoted
   @select(['vottingModel', 'winner']) winner : Observable<string>;
 
-  constructor(private vottingActions: VottingActions, private router: Router) {}
+  constructor(private vottingActionsService: VottingActionsService, private router: Router) {}
   
   ngOnInit() {
     this.lastVoted.subscribe(l => console.log(l));
@@ -33,6 +33,6 @@ export class VottingComponent{
    * @param item (string)
    */
   vote(item : string) : void {
-    this.vottingActions.vote(item);
+    this.vottingActionsService.vote(item);
   }
 }
