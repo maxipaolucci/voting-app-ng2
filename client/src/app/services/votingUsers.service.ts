@@ -1,17 +1,37 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class HeroService {
-  private usersUrl = '/users';  // URL to web api
+export class UsersService {
+
+  private serverUrl = 'http://localhost:3030';
 
   constructor(private http: Http) { }
 
-  login(username) {
-    return this.http.get(this.usersUrl)
+  login(username : string) : Promise<any> {
+    let body = JSON.stringify({ username });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers });
+
+    return this.http.post(this.serverUrl + '/login', body, options)
       .toPromise()
-      .then(response => response.json().data /* as Hero[] */)
+      .then(response => {
+        console.log(response.json());
+        let data = response.json();
+        if (data.success) {
+          Promise.resolve({ logedIn : true});
+        } else {
+          let error = {
+            logedIn : false,
+            url : '/login',
+            username,
+            data
+          };
+
+          Promise.reject(error);
+        }
+      })
       .catch(this.handleError);
   }
 
