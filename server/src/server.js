@@ -9,7 +9,7 @@ export function startServer(store) {
   let io = socketIO.listen(server);
   let urlencode = bodyParser.urlencoded({extended: false});
 
-//SERVER STARTER
+  //SERVER STARTER
   let port = 3030;
   server.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
@@ -27,27 +27,52 @@ export function startServer(store) {
     socket.on('action', store.dispatch.bind(store));
   });
 
-//MIDLEWARES
+  //MIDLEWARES
   app.use(bodyParser.json()); //parses de text comming as a json and exposes it on req.body (used with urlencode for POST request)
   app.use(express.static('public')); //serve any static content in the public directory.
 
-//SERVICES
+  //LOGIC
+  const validateUser = (username, callback) => {
+    const mockedUsers = require('../users.json');
+
+    if (mockedUsers.filter(value => value === username).length) {
+      return callback(true);
+    }
+
+    return callback(false);
+  };
+
+  //SERVICES
   /**
-   * Sample GET service
-   * Test it doing: curl -X GET http://localhost:3030/
+   * Login service. Expects a POST parameter called username as a String.
    */
-  app.get('/', (req, res) => {
-    console.log(`A client access "/"`);
-    res.sendStatus(200);
+  app.post('/login', urlencode, (req, res) => {
+    const username = req.body.username;
+    let data = {};
+    //let password = req.body.password;
+
+    if (username /*&& password*/) {
+      validateUser(username, (result) => {
+        if (result) {
+          data = { status : "success", codeno : 200, msg : "OK" };
+          res.json(data);
+        } else {
+          data = {status: "error", codeno: 400, msg: `login: Failed to login with username: ${username}`};
+          res.status(400).json(data);
+        }
+      });
+    } else {
+      let data = {status: "error", codeno: 400, msg: "login: Username and/or password could not be empty"};
+      res.status(404).json(data);
+    }
   });
 
   /**
-   * Sample POST service.
-   * Test it doing: curl -X POST -d testParam="test data" http://localhost:3030/testPost
+   * Logout user
    */
-  app.post('/testPost', urlencode, (req, res) => {
-    let testParam = req.body.testParam;
-    console.log(`A client access "/testPost" with param: testParam = ${testParam}`);
-    res.json({ status: 'success', msg: `we successfully received your payload: ${testParam}` });
-  });
+  // app.get('/logout/:username', authMiddleware, (req, res) => {
+  //   let username = req.params.username;
+  //   clearLoginData(username);
+  //   res.json({ status : "success", codeno : 200, msg : ""});
+  // });
 }
