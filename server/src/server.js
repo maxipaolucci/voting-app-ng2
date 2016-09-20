@@ -44,10 +44,19 @@ export function startServer(store) {
 
   //SERVICES
   /**
+   * Test with curl
+   * GET: curl -X GET http://localhost:3030/
+   * POST: curl -X POST -d testParam="test data" http://localhost:3030/testPost
+   */
+
+
+  /**
    * Login service. Expects a POST parameter called username as a String.
    */
-  app.post('/login', urlencode, (req, res) => {
-    const username = req.body.username;
+  //app.set("jsonp callback", true);
+
+  app.get('/login', (req, res) => {
+    const username = req.query.username;
     let data = {};
     //let password = req.body.password;
 
@@ -55,15 +64,17 @@ export function startServer(store) {
       validateUser(username, (result) => {
         if (result) {
           data = { status : "success", codeno : 200, msg : "OK" };
-          res.json(data);
+          res.header('Content-type','application/javascript');
+          res.header('Charset','utf8');
+          res.jsonp(data);
         } else {
           data = {status: "error", codeno: 400, msg: `login: Failed to login with username: ${username}`};
-          res.status(400).json(data);
+          res.jsonp(data);
         }
       });
     } else {
       let data = {status: "error", codeno: 400, msg: "login: Username and/or password could not be empty"};
-      res.status(404).json(data);
+      res.jsonp(data);
     }
   });
 
