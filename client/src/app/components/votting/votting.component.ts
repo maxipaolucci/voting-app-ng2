@@ -5,6 +5,7 @@ import { List } from 'immutable';
 import {VottingActionsService} from "../../services/vottingActions.service.ts";
 import {Observable} from "rxjs/Rx";
 import { select } from 'ng2-redux';
+import {UsersService} from "../../services/votingUsers.service";
 
 @Component({
   selector: 'votting-component',
@@ -17,10 +18,19 @@ export class VottingComponent{
   @select( ['vottingModel', 'lastVoted'] ) lastVoted: Observable<string>; //get lastVoted
   @select(['vottingModel', 'winner']) winner : Observable<string>;
 
-  constructor(private vottingActionsService: VottingActionsService, private router: Router) {}
+  constructor(
+    private vottingActionsService: VottingActionsService,
+    private usersService: UsersService,
+    private router: Router
+  ) {}
   
   ngOnInit() {
-    this.lastVoted.subscribe(l => console.log(l));
+    //check loggedIn user
+    if (!this.usersService.isLogedIn()) {
+      this.router.navigate(['/login']);
+    }
+
+    //subscribe to winner value
     this.winner.subscribe(winner => {
       if (winner) {
         this.router.navigate(['/winner']);

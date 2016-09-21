@@ -56,8 +56,11 @@ export function startServer(store) {
   //app.set("jsonp callback", true);
 
   app.get('/login', (req, res) => {
-    const username = req.query.username;
     let data = {};
+    let logLine = `[${Date.now()}] JSONP /login `;
+    const username = req.query.username;
+    logLine += `username=${username} `;
+
     //let password = req.body.password;
 
     if (username /*&& password*/) {
@@ -66,14 +69,20 @@ export function startServer(store) {
           data = { status : "success", codeno : 200, msg : "OK" };
           res.header('Content-type','application/javascript');
           res.header('Charset','utf8');
+          logLine += data.status;
+          console.log(logLine);
           res.jsonp(data);
         } else {
           data = {status: "error", codeno: 400, msg: `login: Failed to login with username: ${username}`};
+          logLine += `${data.status}: ${data.msg}`;
+          console.log(logLine);
           res.jsonp(data);
         }
       });
     } else {
       let data = {status: "error", codeno: 400, msg: "login: Username and/or password could not be empty"};
+      logLine += `${data.status}: ${data.msg}`;
+      console.log(logLine);
       res.jsonp(data);
     }
   });
