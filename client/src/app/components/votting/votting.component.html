@@ -1,6 +1,6 @@
 <vote-component
     *ngFor="let item of votePair | async"
     [item]="item"
-    [disabled]="item === (lastVoted | async)"
+    [disabled]="item === votedByUser"
     (voted)="vote($event)">
 </vote-component>

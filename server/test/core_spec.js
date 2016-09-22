@@ -51,6 +51,9 @@ describe('application logic', () => {
           pair: List.of('Trainspotting', '28 Days Later'),
           tally: Map({
             'Trainspotting': 1
+          }),
+          votedBy: Map({
+            'maxi' : 'Trainspotting'
           })
         })
       });
@@ -71,6 +74,11 @@ describe('application logic', () => {
           tally: Map({
             'Trainspotting': 1,
             '28 Days Later': 2
+          }),
+          votedBy: Map({
+            'maxi' : 'Trainspotting',
+            'fefi' : '28 Days Later',
+            'jesi' : '28 Days Later'
           })
         })
       });
@@ -91,6 +99,12 @@ describe('application logic', () => {
           tally: Map({
             'Trainspotting': 2,
             '28 Days Later': 2
+          }),
+          votedBy: Map({
+            'maxi' : 'Trainspotting',
+            'juan' : 'Trainspotting',
+            'fefi' : '28 Days Later',
+            'jesi' : '28 Days Later'
           })
         })
       });
@@ -111,6 +125,13 @@ describe('application logic', () => {
           tally: Map({
             'Trainspotting': 3,
             '28 Days Later': 2
+          }),
+          votedBy: Map({
+            'maxi' : 'Trainspotting',
+            'juan' : 'Trainspotting',
+            'pipo' : 'Trainspotting',
+            'fefi' : '28 Days Later',
+            'jesi' : '28 Days Later'
           })
         })
       });
@@ -137,11 +158,14 @@ describe('application logic', () => {
       const state = Map({
         pair: List.of('Trainspotting', '28 Days Later')
       });
-      const nextState = vote(state, 'Trainspotting');
+      const nextState = vote(state, 'Trainspotting', 'maxi');
       expect(nextState).to.equal(Map({
         pair: List.of('Trainspotting', '28 Days Later'),
         tally: Map({
           'Trainspotting': 1
+        }),
+        votedBy: Map({
+          'maxi' : 'Trainspotting'
         })
       }));
     });
@@ -152,14 +176,29 @@ describe('application logic', () => {
         tally: Map({
           'Trainspotting': 3,
           '28 Days Later': 2
+        }),
+        votedBy: Map({
+          'jesi' : '28 Days Later',
+          'juan' : '28 Days Later',
+          'pepe' : 'Trainspotting',
+          'tito' : 'Trainspotting',
+          'fefi' : 'Trainspotting'
         })
       });
-      const nextState = vote(state, 'Trainspotting');
+      const nextState = vote(state, 'Trainspotting', 'maxi');
       expect(nextState).to.equal(Map({
         pair: List.of('Trainspotting', '28 Days Later'),
         tally: Map({
           'Trainspotting': 4,
           '28 Days Later': 2
+        }),
+        votedBy: Map({
+          'jesi' : '28 Days Later',
+          'juan' : '28 Days Later',
+          'pepe' : 'Trainspotting',
+          'tito' : 'Trainspotting',
+          'fefi' : 'Trainspotting',
+          'maxi' : 'Trainspotting'
         })
       }));
     });
@@ -191,6 +230,11 @@ describe('application logic', () => {
           tally: Map({
             'Trainspotting': 1,
             '28 Days Later': 2
+          }),
+          votedBy: Map({
+            'jesi' : '28 Days Later',
+            'juan' : '28 Days Later',
+            'pepe' : 'Trainspotting'
           })
         })
       });

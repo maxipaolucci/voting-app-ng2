@@ -15,8 +15,9 @@ import {UsersService} from "../../services/votingUsers.service";
 })
 export class VottingComponent{
   @select( ['vottingModel', 'vote', 'pair'] ) votePair: Observable<List<string>>; //vote pair data using path selector & immutable
-  @select( ['vottingModel', 'lastVoted'] ) lastVoted: Observable<string>; //get lastVoted
+  @select( ['vottingModel', 'vote', 'votedBy'] ) votedBy: Observable<any>; //get lastVoted
   @select(['vottingModel', 'winner']) winner : Observable<string>;
+  private votedByUser : string = '';
 
   constructor(
     private vottingActionsService: VottingActionsService,
@@ -36,6 +37,12 @@ export class VottingComponent{
         this.router.navigate(['/winner']);
       }
     });
+
+    this.votedBy.subscribe(votedBy => {
+      if (votedBy) {
+        this.votedByUser = votedBy.get(this.usersService.getUsername(), '');
+      }
+    });
   }
   
   /**
@@ -43,6 +50,6 @@ export class VottingComponent{
    * @param item (string)
    */
   vote(item : string) : void {
-    this.vottingActionsService.vote(item);
+    this.vottingActionsService.vote(item, this.usersService.getUsername());
   }
 }

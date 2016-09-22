@@ -7,7 +7,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case 'NEXT':
       return next(state);
     case 'VOTE':
-      return state.update('vote', voteState => vote(voteState, action.payload.item));
+      return state.update('vote', voteState => vote(voteState, action.payload.item, action.payload.voter));
     case 'RESTART':
       return restart(state);
   }

@@ -40,8 +40,9 @@ export function next(state) {
   }
 }
 
-export function vote(state, item) {
-  return state.updateIn(['tally', item], 0, tally => tally + 1);
+export function vote(state, item, voter) {
+  return state.updateIn(['tally', item], 0, tally => tally + 1)
+    .updateIn(['votedBy', voter], '', voted => item);
 }
 
 export function restart(state) {

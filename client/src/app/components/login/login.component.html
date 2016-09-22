@@ -1,6 +1,6 @@
 <div class="voting-app-container login-box">
 
-  <form #loginForm="ngForm"  *ngIf="active" (ngSubmit)="onSubmit(username.value)" >
+  <form #loginForm="ngForm" id="loginForm" *ngIf="active" (ngSubmit)="onSubmit(username.value)" >
     <div class="form-group">
       <label for="username">Username</label>
 
@@ -27,8 +27,7 @@
           Invalid username, try again please.
         </div>
       </div>
-
-      <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
     </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
   </form>
 </div>

@@ -19,10 +19,11 @@ export class VottingActionsService {
 
   /**
    * Dispatch vote action
-   * @param item
+   * @param item (string) . The item voted
+   * @param voter (string) . The username of the voter
    */
-  vote(item : string) : void {
-    this.ngRedux.dispatch<any>(vote(item));
+  vote(item : string, voter : string) : void {
+    this.ngRedux.dispatch<any>(vote(item, voter));
   }
 
   /**

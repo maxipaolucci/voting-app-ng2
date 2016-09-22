@@ -22,16 +22,6 @@ const setState = (state : IVottingState, newState : any) : IVottingState => {
 };
 
 /**
- * Set the last voted value in the vote state
- * @param state (IVottingState) . The current state
- * @param item (string) . The last voted value
- * @returns {IVottingState} . The new state with last voted updated
- */
-const vote = (state : IVottingState, item : string ) : IVottingState => {
-  return state.set('lastVoted', item);
-};
-
-/**
  * Votting Reducer. This is the state reducer for the votting app.
  * @param state (IVottingState) . The state to reduce
  * @param action (IAction) . The action dispached
@@ -42,9 +32,6 @@ export function voteReducer(state : IVottingState = VOTTING_INITIAL_STATE, actio
 
     case 'SET_STATE':
       return setState(state, action.payload.state);
-
-    case 'VOTE':
-      return vote(state, action.payload.item);
 
     default:
       return state;
