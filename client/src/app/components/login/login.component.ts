@@ -9,6 +9,10 @@ import {UsersService} from "../../services/votingUsers.service";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  usernameValue : string = '';
+  showInvalidUsernameMsg : boolean = false;
+  submitted : boolean = false;
+  active : boolean = true;
 
   constructor(private usersService: UsersService, private router: Router) {}
 
@@ -18,17 +22,32 @@ export class LoginComponent {
    *
    * @param username (string)
    */
-  login(username : string) {
-    this.usersService.login(username).then(data => {
+  login() {
+    this.showInvalidUsernameMsg = false;
+    this.usersService.login(this.usernameValue).then(data => {
       if (this.usersService.isLogedIn()) {
         this.router.navigate(['/voting']);
       } else {
+        this.showInvalidUsernameMsg = true;
         console.log(data);
       }
 
     }, error => {
+      this.showInvalidUsernameMsg = true;
       console.log(error);
     });
   }
 
+  onSubmit() {
+    this.submitted = true;
+    this.login();
+  }
+
+
+  reset() {
+    this.showInvalidUsernameMsg = true;
+    this.usernameValue = '';
+    this.active = false;
+    setTimeout(() => this.active = true, 0);
+  }
 }

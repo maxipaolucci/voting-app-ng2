@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title }  from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { NgRedux, DevToolsExtension } from 'ng2-redux';
 import {NgReduxRouter} from "ng2-redux-router";
 
@@ -22,6 +23,7 @@ import '../styles.global.scss';
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     JsonpModule,
     routing
