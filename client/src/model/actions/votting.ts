@@ -15,3 +15,7 @@ export const next = () : IAction => {
 export const restart = () : IAction => {
   return { type: 'RESTART', meta: { remote : true } }
 };
+
+export const clientRestart = () : IAction => {
+  return { type: 'CLIENT_RESTART' }
+};

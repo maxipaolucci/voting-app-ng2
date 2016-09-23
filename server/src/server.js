@@ -24,7 +24,15 @@ export function startServer(store) {
   io.on('connection', (socket) => {
     console.log('Client connected!');
     socket.emit('state', store.getState().toJS());
-    socket.on('action', store.dispatch.bind(store));
+    socket.on('action', (data) => {
+      if (data.type == 'RESTART') {
+        io.emit('clientRestart'); //we send this notification to all the clients to let them now that one of them restarted the app
+                                  //we can do socket.broadband.emit('clientRestart') to notify all the clients except the sender(socket) but
+                                  //to make a more homogeneous client reaction we prefer to notify all of them even the emitter
+      }
+      store.dispatch(data);
+      //store.dispatch.bind(store)
+    });
   });
 
   //MIDLEWARES

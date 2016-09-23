@@ -41,8 +41,16 @@ export function next(state) {
 }
 
 export function vote(state, item, voter) {
-  return state.updateIn(['tally', item], 0, tally => tally + 1)
-    .updateIn(['votedBy', voter], '', voted => item);
+
+  //TODO update this method to increment or decrememnt tally depending on the voter changed the last selection or is a new vote
+
+  if (!state.hasIn(['votedBy', voter])) {
+    return state.updateIn(['tally', item], 0, tally => tally + 1)
+        .updateIn(['votedBy', voter], '', voted => item);
+  }
+
+  // let newState = state.updateIn(['votedBy', voter], '', voted => item); //we has
+  // newState.updateIn(['tally', item], 0, tally => tally + 1)
 }
 
 export function restart(state) {

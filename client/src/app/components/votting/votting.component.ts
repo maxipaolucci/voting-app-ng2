@@ -41,6 +41,8 @@ export class VottingComponent{
     this.votedBy.subscribe(votedBy => {
       if (votedBy) {
         this.votedByUser = votedBy.get(this.usersService.getUsername(), '');
+      } else {
+        this.votedByUser = '';
       }
     });
   }

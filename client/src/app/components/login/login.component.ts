@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UsersService} from "../../services/votingUsers.service";
 
@@ -8,13 +8,15 @@ import {UsersService} from "../../services/votingUsers.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   usernameValue : string = '';
   showInvalidUsernameMsg : boolean = false;
   submitted : boolean = false;
   active : boolean = true;
 
   constructor(private usersService: UsersService, private router: Router) {}
+
+  ngOnInit() {}
 
   /**
    * Login event handler. Tries to login with the username provided. If login is successful the redirects to
