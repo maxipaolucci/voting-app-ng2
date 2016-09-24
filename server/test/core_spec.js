@@ -1,7 +1,7 @@
 import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
 
-import {setItems, next, vote, restart} from '../src/core';
+import {setItems, next, vote, restart} from '../src/model/core';
 
 describe('application logic', () => {
 
@@ -199,6 +199,70 @@ describe('application logic', () => {
           'tito' : 'Trainspotting',
           'fefi' : 'Trainspotting',
           'maxi' : 'Trainspotting'
+        })
+      }));
+    });
+
+    it('change vote from a user who already voted', () => {
+      const state = Map({
+        pair: List.of('Trainspotting', '28 Days Later'),
+        tally: Map({
+          'Trainspotting': 3,
+          '28 Days Later': 2
+        }),
+        votedBy: Map({
+          'jesi' : '28 Days Later',
+          'juan' : '28 Days Later',
+          'pepe' : 'Trainspotting',
+          'tito' : 'Trainspotting',
+          'fefi' : 'Trainspotting'
+        })
+      });
+      const nextState = vote(state, 'Trainspotting', 'jesi');
+      expect(nextState).to.equal(Map({
+        pair: List.of('Trainspotting', '28 Days Later'),
+        tally: Map({
+          'Trainspotting': 4,
+          '28 Days Later': 1
+        }),
+        votedBy: Map({
+          'jesi' : 'Trainspotting',
+          'juan' : '28 Days Later',
+          'pepe' : 'Trainspotting',
+          'tito' : 'Trainspotting',
+          'fefi' : 'Trainspotting'
+        })
+      }));
+    });
+
+    it('discard vote from a user who already voted the same entry before', () => {
+      const state = Map({
+        pair: List.of('Trainspotting', '28 Days Later'),
+        tally: Map({
+          'Trainspotting': 3,
+          '28 Days Later': 2
+        }),
+        votedBy: Map({
+          'jesi' : '28 Days Later',
+          'juan' : '28 Days Later',
+          'pepe' : 'Trainspotting',
+          'tito' : 'Trainspotting',
+          'fefi' : 'Trainspotting'
+        })
+      });
+      const nextState = vote(state, 'Trainspotting', 'tito');
+      expect(nextState).to.equal(Map({
+        pair: List.of('Trainspotting', '28 Days Later'),
+        tally: Map({
+          'Trainspotting': 3,
+          '28 Days Later': 2
+        }),
+        votedBy: Map({
+          'jesi' : '28 Days Later',
+          'juan' : '28 Days Later',
+          'pepe' : 'Trainspotting',
+          'tito' : 'Trainspotting',
+          'fefi' : 'Trainspotting'
         })
       }));
     });
