@@ -33,7 +33,6 @@ export function startServer(store) {
                                   //to make a more homogeneous client reaction we prefer to notify all of them even the emitter
       }
       store.dispatch(data);
-      //store.dispatch.bind(store)
     });
   });
 
@@ -43,23 +42,4 @@ export function startServer(store) {
 
   //ROUTES
   app.use('/users', usersRouter);
-
-  //SERVICES
-  /**
-   * Test with curl
-   * GET: curl -X GET http://localhost:3030/
-   * POST: curl -X POST -d testParam="test data" http://localhost:3030/testPost
-   */
-
-
-
-
-  /**
-   * Logout user
-   */
-  // app.get('/logout/:username', authMiddleware, (req, res) => {
-  //   let username = req.params.username;
-  //   clearLoginData(username);
-  //   res.json({ status : "success", codeno : 200, msg : ""});
-  // });
 }

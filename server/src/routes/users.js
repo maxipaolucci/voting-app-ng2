@@ -3,9 +3,6 @@ import {validateUsername} from '../controllers/users';
 
 let usersRouter = express.Router();
 
-/**
- * Login service. Expects a POST parameter called username as a String.
- */
 
 usersRouter.route('/login')
   .get(validateUsername, (req, res) => {
@@ -17,5 +14,10 @@ usersRouter.route('/login')
     console.log(logLine);
     res.jsonp(data);
   });
+// .get('/logout/:username', (req, res) => {
+//   let username = req.params.username;
+//   clearLoginData(username);
+//   res.json({ status : "success", codeno : 200, msg : ""});
+// });
 
 export default usersRouter;
