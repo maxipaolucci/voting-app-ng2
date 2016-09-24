@@ -20,7 +20,7 @@ export class UsersService {
     params.set('username', username);
     params.set('callback', 'JSONP_CALLBACK');
 
-    return this.jsonp.get(this.serverUrl + '/login', { search : params })
+    return this.jsonp.get(this.serverUrl + '/users/login', { search : params })
       .toPromise()
       .then((response : any) => {
         let data = response.json();

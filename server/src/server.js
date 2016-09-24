@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import socketIO from 'socket.io';
-import {validateUsername} from './controllers/users';
+import usersRouter from './routes/users';
 
 export function startServer(store) {
   let app = express();
@@ -41,6 +41,9 @@ export function startServer(store) {
   app.use(bodyParser.json()); //parses de text comming as a json and exposes it on req.body (used with urlencode for POST request)
   app.use(express.static('public')); //serve any static content in the public directory.
 
+  //ROUTES
+  app.use('/users', usersRouter);
+
   //SERVICES
   /**
    * Test with curl
@@ -49,19 +52,7 @@ export function startServer(store) {
    */
 
 
-  /**
-   * Login service. Expects a POST parameter called username as a String.
-   */
 
-  app.get('/login', validateUsername, (req, res) => {
-    let logLine = `[${Date.now()}] JSONP /login `;
-
-    //let password = req.body.password;
-    let data = {status: "success", codeno: 200, msg: `OK`};
-    logLine += `${data.status}: ${data.msg}`;
-    console.log(logLine);
-    res.jsonp(data);
-  });
 
   /**
    * Logout user
