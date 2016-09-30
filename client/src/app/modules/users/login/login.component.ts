@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {UsersService} from "../../services/votingUsers.service";
+import {UsersService} from "../services/users.service.ts";
 
 
 @Component({
@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
   submitted : boolean = false;
   active : boolean = true;
 
-  constructor(private usersService: UsersService, private router: Router) {}
+  constructor(private usersService: UsersService, private router: Router) {
+    console.log(123);
+  }
 
   ngOnInit() {}
 
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
    */
   login() {
     this.showInvalidUsernameMsg = false;
-    this.usersService.login(this.usernameValue).then(data => {
+    this.usersService.login(this.usernameValue).then((data : any) => {
       if (this.usersService.isLogedIn()) {
         this.router.navigate(['/voting']);
       } else {

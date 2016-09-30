@@ -1,21 +1,24 @@
 import { Injectable }    from '@angular/core';
-import { Headers, RequestOptions } from '@angular/http';
 import { Jsonp, URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class UsersService {
 
   private serverUrl : string = 'http://localhost:3030';
   private loggedIn : boolean = false; // loggedin state
-  private username : string = null; //username of the person that is logged in the system
+  public username$ : BehaviorSubject<string> = new BehaviorSubject<string>(null); //observable username of the person that is logged in the system
 
   constructor(private jsonp: Jsonp) { }
 
-  login(username : string) : Promise<any> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+  logout() {
+    this.username$.next(null);
+    this.loggedIn = false;
+  }
 
+  login(username : string) : Promise<any> {
     let params = new URLSearchParams();
     params.set('username', username);
     params.set('callback', 'JSONP_CALLBACK');
@@ -27,13 +30,13 @@ export class UsersService {
 
         if (data.status === 'success') {
           this.loggedIn = true;
-          this.username = username;
-          return { logedIn : true };
+          this.username$.next(username);
+          return { loggedIn : true };
         } else {
           this.loggedIn = false;
-          this.username = null;
-            let error = {
-            logedIn : false,
+          this.username$.next(null);
+          let error = {
+            loggedIn : false,
             url : '/login',
             username,
             data
@@ -44,7 +47,7 @@ export class UsersService {
       })
       .catch((error) => {
         this.loggedIn = false;
-        this.username = null;
+        this.username$.next(null);
         return this.handleError(error);
       });
   }
@@ -67,7 +70,7 @@ export class UsersService {
    * @returns {string}
    */
   getUsername() : string {
-    return this.username;
+    return this.username$.getValue();
   }
 }
 

@@ -1,0 +1,11 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="../../../../public/images/angular.png">
+      </a>
+    </div>
+    <div class="nav navbar-left navbar-text app-title">{{title}}</div>
+    <span class="loggedin-user" *ngIf="username">{{username}}  <a class="logout-btn" (click)="logout($event)" href="#">[Logout]</a></span>
+  </div>
+</nav>

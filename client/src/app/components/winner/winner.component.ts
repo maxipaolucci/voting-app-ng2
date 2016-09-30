@@ -17,8 +17,6 @@ export class WinnerComponent implements OnInit {
 
   ngOnInit() {
     this.winner.subscribe(winner => {
-      console.log(winner);
-      console.log(this.router.isActive('/winner', true));
       if (!winner && this.router.isActive('/winner', true)) {
         this.router.navigate(['/voting']);
       }

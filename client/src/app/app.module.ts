@@ -10,10 +10,10 @@ import {VottingComponent} from "./components/votting/votting.component";
 import {VoteComponent} from "./components/vote/vote.component";
 import {ResultsComponent} from "./components/results/results.component";
 import {WinnerComponent} from "./components/winner/winner.component";
-import {LoginComponent} from "./components/login/login.component";
+import {HeaderComponent} from "./components/header/header.component";
 
 import {VottingActionsService} from "./services/vottingActions.service.ts";
-import {UsersService} from "./services/votingUsers.service";
+import {UsersService} from "./modules/users/services/users.service.ts";
 
 import {routing} from "./app.routing";
 
@@ -31,11 +31,11 @@ import '../styles.global.scss';
 
   declarations: [
     AppComponent,
+    HeaderComponent,
     VottingComponent,
     VoteComponent,
     ResultsComponent,
-    WinnerComponent,
-    LoginComponent
+    WinnerComponent
   ],
 
   providers: [
