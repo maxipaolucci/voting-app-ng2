@@ -29,6 +29,6 @@ export class HeaderComponent implements OnInit{
     $event.preventDefault();
     $event.stopPropagation();
     this.usersService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/users/login']);
   }
 }

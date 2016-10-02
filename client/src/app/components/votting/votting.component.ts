@@ -29,7 +29,7 @@ export class VottingComponent{
     //check loggedIn user
     if (!this.usersService.isLogedIn()) {
       console.log(123);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/users/login']);
       console.log(456);
     }
 

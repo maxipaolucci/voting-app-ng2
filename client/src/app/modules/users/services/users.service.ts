@@ -37,7 +37,7 @@ export class UsersService {
           this.username$.next(null);
           let error = {
             loggedIn : false,
-            url : '/login',
+            url : this.serverUrl + '/users/login',
             username,
             data
           };

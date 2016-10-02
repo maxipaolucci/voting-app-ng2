@@ -23,8 +23,12 @@ const appRoutes: Routes = [
     component: WinnerComponent
   },
   {
-    path: 'login',
-    loadChildren: './modules/users/users.module'
+    path: 'users',
+    loadChildren: () => new Promise((resolve : any) => {
+      (require as any).ensure([], (require : any) => {
+        resolve(require('./modules/users/users.module').default);
+      });
+    })
   }
 ];
 
