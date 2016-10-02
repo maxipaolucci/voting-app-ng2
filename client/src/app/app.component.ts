@@ -8,8 +8,8 @@ import { IAppState, APP_INITIAL_STATE } from '../model/store';
 import reduxLogger from '../model/configureLogger';
 
 import { __DEVMODE__ } from "../constants/config";
-import {VottingActionsService} from "./services/vottingActions.service.ts";
-import {VottingMiddlewareService} from "./services/vottingMiddleware.service.ts";
+import {VottingActionsService} from "./modules/voting/services/vottingActions.service.ts";
+import {VottingMiddlewareService} from "./modules/voting/services/vottingMiddleware.service.ts";
 
 
 @Component({

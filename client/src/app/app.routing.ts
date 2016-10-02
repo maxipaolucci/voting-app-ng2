@@ -1,26 +1,17 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import {VottingComponent} from "./components/votting/votting.component";
-import {ResultsComponent} from "./components/results/results.component";
-import {WinnerComponent} from "./components/winner/winner.component";
+import {VottingComponent} from "./modules/voting/votting/votting.component";
+import {ResultsComponent} from "./modules/voting/results/results.component";
+import {WinnerComponent} from "./modules/voting/winner/winner.component";
 
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/voting',
-    pathMatch: 'full'
-  },
-  {
-    path: 'voting',
-    component: VottingComponent
-  },
-  {
-    path: 'results',
-    component: ResultsComponent
-  },
-  {
-    path: 'winner',
-    component: WinnerComponent
+    loadChildren: () => new Promise((resolve : any) => {
+      (require as any).ensure([], (require : any) => {
+        resolve(require('./modules/voting/voting.module').default);
+      });
+    })
   },
   {
     path: 'users',

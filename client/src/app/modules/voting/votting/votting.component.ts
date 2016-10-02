@@ -2,10 +2,10 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
 import { Router } from '@angular/router';
 import { List } from 'immutable';
 
-import {VottingActionsService} from "../../services/vottingActions.service.ts";
+import {VottingActionsService} from "../services/vottingActions.service.ts";
 import {Observable} from "rxjs/Rx";
 import { select } from 'ng2-redux';
-import {UsersService} from "../../modules/users/services/users.service.ts";
+import {UsersService} from "../../../modules/users/services/users.service.ts";
 
 @Component({
   selector: 'votting-component',
@@ -28,9 +28,7 @@ export class VottingComponent{
   ngOnInit() {
     //check loggedIn user
     if (!this.usersService.isLogedIn()) {
-      console.log(123);
       this.router.navigate(['/users/login']);
-      console.log(456);
     }
 
     //subscribe to winner value

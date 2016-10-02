@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 
-import { IAppState } from '../../model/store';
-import { setState, vote, next, restart, clientRestart } from '../../model/actions/votting';
+import { IAppState } from '../../../../model/store';
+import { setState, vote, next, restart, clientRestart } from '../../../../model/actions/votting';
 
 @Injectable()
 export class VottingActionsService {

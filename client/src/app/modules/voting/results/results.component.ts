@@ -1,7 +1,7 @@
-import { Component, Input, ChangeDetectionStrategy, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { List, Map } from  'immutable';
 import {select} from "ng2-redux/lib/index";
-import {VottingActionsService} from "../../services/vottingActions.service.ts";
+import {VottingActionsService} from "../services/vottingActions.service.ts";
 import {Observable} from "rxjs/Rx";
 
 

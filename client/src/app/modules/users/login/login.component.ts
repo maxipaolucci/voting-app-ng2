@@ -8,17 +8,13 @@ import {UsersService} from "../services/users.service.ts";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   usernameValue : string = '';
   showInvalidUsernameMsg : boolean = false;
   submitted : boolean = false;
   active : boolean = true;
 
-  constructor(private usersService: UsersService, private router: Router) {
-    console.log(123);
-  }
-
-  ngOnInit() {}
+  constructor(private usersService: UsersService, private router: Router) {}
 
   /**
    * Login event handler. Tries to login with the username provided. If login is successful the redirects to

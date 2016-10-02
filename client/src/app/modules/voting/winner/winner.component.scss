@@ -1,12 +1,20 @@
-@import "../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../../../scss/variables";
 
 :host {
-  //voting-component
+  //winner-component
   display: flex;
   flex-direction: column;
   height: 100%;
   padding-bottom: 20px;
 
+  .winner-box {
+    flex: 1 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+  }
 
   @media (max-width: $screen-xs-max) { }
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { }
