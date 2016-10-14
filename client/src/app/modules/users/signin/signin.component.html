@@ -1,10 +1,10 @@
 <div class="voting-app-container signin-box">
-  <form (ngSubmit)="onSubmit()" id="signinForm" [formGroup]="signinForm">
+  <form (ngSubmit)="onSubmit()" id="signinForm" [formGroup]="form">
     <div *ngFor="let question of questions" class="form-row">
-      <question [question]="question" [form]="signinForm"></question>
+      <question [question]="question" [formErrors]="formErrors" [form]="form"></question>
     </div>
     <div class="form-row">
-      <button type="submit" [disabled]="!signinForm.valid">Sign in</button>
+      <button type="submit" [disabled]="!form.valid">Sign in</button>
     </div>
   </form>
 

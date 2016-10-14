@@ -2,6 +2,7 @@ import { Injectable }       from '@angular/core';
 import { DropdownQuestion } from '../question-dropdown';
 import { QuestionBase }     from '../question-base';
 import { TextboxQuestion }  from '../question-textbox';
+import {Validators} from "@angular/forms";
 @Injectable()
 export class SigninQuestionService {
   // Todo: get from a remote source of question metadata
@@ -23,6 +24,11 @@ export class SigninQuestionService {
         key: 'firstName',
         label: 'First name',
         value: 'Bombasto',
+        validators : [{
+          fn: Validators.required,
+          errorType: 'required',
+          errorMessage: 'First name is required'
+        }],
         required: true,
         order: 1
       }),

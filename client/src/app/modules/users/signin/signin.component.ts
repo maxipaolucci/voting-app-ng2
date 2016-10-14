@@ -15,7 +15,10 @@ import {SigninQuestionService} from "../../forms/services/signin-questions.servi
 })
 export class SigninComponent implements OnInit{
   questions: QuestionBase<any>[] = [];
-  signinForm: FormGroup;
+  form: FormGroup;
+  formErrors : any;
+  validationMessages : any;
+
   payLoad = '';
 
   constructor(private usersService: UsersService,
@@ -25,10 +28,34 @@ export class SigninComponent implements OnInit{
 
   ngOnInit() : void {
     this.questions = this.qs.getQuestions();
-    this.signinForm = this.qcs.toFormGroup(this.questions);
+    this.form = this.qcs.toFormGroup(this.questions);
+    this.formErrors = this.qcs.getFormErrors(this.questions);
+    this.validationMessages = this.qcs.getValidationMessages(this.questions);
+    console.log(this.formErrors, this.validationMessages);
+    this.form.valueChanges.subscribe( data => this.onValueChanged(data) );
+    this.onValueChanged(); // (re)set validation messages now
+  }
+
+  onValueChanged(data?: any) {
+    if (!this.form) {
+      return;
+    }
+
+    const form = this.form;
+    for (const field in this.formErrors) {
+      // clear previous error message (if any)
+      this.formErrors[field] = '';
+      const control = form.get(field);
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
+        }
+      }
+    }
   }
 
   onSubmit() {
-    this.payLoad = JSON.stringify(this.signinForm.value);
+    this.payLoad = JSON.stringify(this.form.value);
   }
 }
