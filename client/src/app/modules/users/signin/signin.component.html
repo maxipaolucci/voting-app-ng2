@@ -1,0 +1,14 @@
+<div class="voting-app-container signin-box">
+  <form (ngSubmit)="onSubmit()" id="signinForm" [formGroup]="signinForm">
+    <div *ngFor="let question of questions" class="form-row">
+      <question [question]="question" [form]="signinForm"></question>
+    </div>
+    <div class="form-row">
+      <button type="submit" [disabled]="!signinForm.valid">Sign in</button>
+    </div>
+  </form>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+</div>
