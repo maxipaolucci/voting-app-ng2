@@ -31,7 +31,6 @@ export class SigninComponent implements OnInit{
     this.form = this.qcs.toFormGroup(this.questions);
     this.formErrors = this.qcs.getFormErrors(this.questions);
     this.validationMessages = this.qcs.getValidationMessages(this.questions);
-    console.log(this.formErrors, this.validationMessages);
     this.form.valueChanges.subscribe( data => this.onValueChanged(data) );
     this.onValueChanged(); // (re)set validation messages now
   }
